@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AP Multiworld State</title>
+    <title>Latest Plot</title>
+    <!-- Tell browsers not to cache this page -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <style>
         body { display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: #f4f4f9; }
         img { max-width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
-    <img src="plot.png" alt="Latest Plot">
+    <!-- Adding a timestamp query string forces the browser to fetch the new image -->
+    <img id="plot" src="plot.png" alt="Latest Plot">
+
+    <script>
+        // Appends timestamp so browser always fetches latest image on page refresh
+        document.getElementById('plot').src = 'plot.png?v=' + new Date().getTime();
+    </script>
 </body>
 </html>
