@@ -2,23 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Latest Plot</title>
-    <!-- Tell browsers not to cache this page -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP World History</title>
+    <!-- Prevent caching of latest content on GitHub Pages -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <style>
-        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: #f4f4f9; }
-        img { max-width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        :root {
+            --bg-color: #f4f4f9;
+            --border-color: #e0e0e0;
+            
+            /* Turquoise Accent Colors */
+            --border-hover: #40e0d0; /* Standard Turquoise */
+            --text-hover: #40e0d0;   /* Text highlight color */
+            --shadow-hover: rgba(64, 224, 208, 0.4); /* Subtle turquoise glow shadow */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 2rem 1rem;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Container that scales nicely and holds all your banners */
+        .dashboard-container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Space between banners */
+        }
+
+        /* Base styles for ALL banners */
+        .banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3.5rem 1.5rem; /* Height of the banner */
+            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* Dark overlay (40% opacity) so white text stays readable over images */
+            background-color: rgba(0, 0, 0, 0.4);
+            background-blend-mode: dark-mode;
+
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.25s ease-in-out;
+            cursor: pointer;
+        }
+
+        /* Hover & Focus state with Turquoise effects */
+        .banner:hover,
+        .banner:focus-visible {
+            border-color: var(--border-hover);
+            box-shadow: 0 6px 20px var(--shadow-hover);
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        /* Changes the title color to turquoise when hovered */
+        .banner:hover .banner-title,
+        .banner:focus-visible .banner-title {
+            color: var(--text-hover);
+        }
+
+        .banner-title {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.6rem;
+            font-weight: 600;
+            transition: color 0.25s ease-in-out;
+        }
+
+        .banner-subtitle {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+        }
+
+        /* --- UNIQUE BACKGROUND IMAGES FOR EACH AP WORLD LINK --- */
+
+        .apworld1 {
+            background-image: url('apworld1.png');
+        }
+
+        .apworld2 {
+            background-image: url('apworld2.png');
+        }
+
+        .apworld3 {
+            background-image: url('apworld3.png');
+        }
     </style>
 </head>
 <body>
-    <!-- Adding a timestamp query string forces the browser to fetch the new image -->
-    <img id="plot" src="plot.png" alt="Latest Plot">
 
-    <script>
-        // Appends timestamp so browser always fetches latest image on page refresh
-        document.getElementById('plot').src = 'plot.png?v=' + new Date().getTime();
-    </script>
+    <main class="dashboard-container">
+
+        <!-- Banner for AP World 1 -->
+        <a href="apworld1.html" class="banner apworld1">
+            <h2 class="banner-title">AP World History - Part 1</h2>
+            <p class="banner-subtitle">Click to view apworld1.html</p>
+        </a>
+
+        <!-- Banner for AP World 2 -->
+        <a href="apworld2.html" class="banner apworld2">
+            <h2 class="banner-title">AP World History - Part 2</h2>
+            <p class="banner-subtitle">Click to view apworld2.html</p>
+        </a>
+
+        <!-- Banner for AP World 3 -->
+        <a href="apworld3.html" class="banner apworld3">
+            <h2 class="banner-title">AP World History - Part 3</h2>
+            <p class="banner-subtitle">Click to view apworld3.html</p>
+        </a>
+
+    </main>
+
 </body>
 </html>
