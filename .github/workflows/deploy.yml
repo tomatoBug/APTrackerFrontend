@@ -29,9 +29,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Transform Plot HTML
-        run: python transform_plot.py
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
