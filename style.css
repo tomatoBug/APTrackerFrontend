@@ -127,7 +127,10 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    overflow-x: auto; /* Ensures horizontal scrollbar if screen is narrower than banner min-width */
+    overflow-x: auto; 
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: -10px;
 }
 
 /* --- BANNER LAYOUT --- */
