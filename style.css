@@ -120,21 +120,24 @@ body {
     line-height: 1.4;
 }
 
-/* --- DASHBOARD CONTAINER & BANNERS --- */
+/* Container scroll fallback for screens smaller than the banner's min-width */
 .dashboard-container {
     width: 100%;
     max-width: 900px;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    overflow-x: auto; /* Ensures horizontal scrollbar if screen is narrower than banner min-width */
 }
 
+/* --- BANNER LAYOUT --- */
 .banner {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    height: 140px;
+    justify-content: space-between;
+    min-height: 140px;
+    min-width: 600px; /* SET MINIMUM WIDTH HERE: Prevents images and text from colliding */
     padding: 0.8rem 1.2rem; 
     background-color: var(--container-bg);
     border: 2px solid var(--turquoise-dim);
@@ -148,11 +151,6 @@ body {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    background-size: auto 100%;
-    background-position: left center;
-    background-repeat: no-repeat;
-    background-origin: content-box;
-    background-clip: padding-box;
 }
 
 .banner:hover,
@@ -165,10 +163,16 @@ body {
     outline: none;
 }
 
-.banner:hover .banner-title,
-.banner:focus-visible .banner-title {
-    color: var(--turquoise-primary);
-    text-shadow: 0 0 8px var(--turquoise-glow);
+/* --- BANNER CONTENT (CENTER) --- */
+.banner-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1rem;
+    z-index: 2;
 }
 
 .banner-title {
@@ -178,7 +182,12 @@ body {
     letter-spacing: 0.5px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
     transition: all 0.25s ease-in-out;
-    z-index: 2;
+}
+
+.banner:hover .banner-title,
+.banner:focus-visible .banner-title {
+    color: var(--turquoise-primary);
+    text-shadow: 0 0 8px var(--turquoise-glow);
 }
 
 .banner-subtitle {
@@ -186,13 +195,40 @@ body {
     font-size: 0.85rem;
     color: var(--turquoise-primary);
     opacity: 0.8;
+}
+
+/* --- BANNER IMAGES (LEFT & RIGHT) --- */
+.banner-img-container {
+    flex-shrink: 0;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 2;
 }
 
-.apworld1 {
-    background-image: 
-        linear-gradient(90deg, transparent 0%, var(--container-bg) 60%),
-        url('images/archipelago.png');
+.banner-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Responsive adjustment for mobile phones */
+@media (max-width: 650px) {
+    .banner {
+        min-width: 100%; /* Resets width on mobile */
+    }
+
+    /* Option: reduce image size on smaller viewports so text still fits */
+    .banner-img-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .banner-title {
+        font-size: 1.1rem;
+    }
 }
 
 /* --- PLOT CONTAINER --- */
